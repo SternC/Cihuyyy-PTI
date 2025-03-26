@@ -4,6 +4,17 @@ $(document).ready(function(){
 
     let currentIndex = 0;
 
+    function playSound() {
+        let clickSFX = new Audio("props/SFX/clicksfx.mp3");
+        clickSFX.volume = 1.0;
+        clickSFX.play();
+    }
+
+    let bgMusic = new Audio("props/SFX/bgmusic.mp3");
+    bgMusic.loop = true;
+    bgMusic.volume = 0.45;
+    bgMusic.play();
+
     function cycleCharacter(){
         $("#characterImage").fadeOut(200, function() {
             $(this).attr("src", charImg[currentIndex]).fadeIn(200);
@@ -11,11 +22,13 @@ $(document).ready(function(){
     }
 
     $("#prevBtn").click(function(){
+        playSound();
         currentIndex = (currentIndex - 1 + charImg.length) % charImg.length;
         cycleCharacter();
     });
 
     $("#nextBtn").click(function(){
+        playSound();
         currentIndex = (currentIndex + 1) % charImg.length;
         cycleCharacter();
     });
