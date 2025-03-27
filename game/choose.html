@@ -18,10 +18,16 @@
             Choose Your Character
         </h1>
 
-        <div class="flex items-center justify-center gap-4 my-5 relative">
-            <button id="prevBtn" class="pixel-button">Prev</button>
-            <img id="characterImage" src="props/char1.webp" alt="Character" class="w-80 h-80 object-contain rounded-lg" style="animation: subtleFloat 4s ease-in-out infinite" />
-            <button id="nextBtn" class="pixel-button">Next</button>
+        <div class="relative flex items-center justify-center gap-2 my-5">
+
+            <button id="prevBtn" class="pixel-button absolute -left-10">Prev</button>
+
+            <div class="w-80 h-80 flex items-center justify-center overflow-hidden">
+                <img id="characterImage" src="props/char1.webp" alt="Character"
+                    class="max-w-full max-h-full object-contain rounded-lg" style="animation: subtleFloat 4s ease-in-out infinite" />
+            </div>
+
+            <button id="nextBtn" class="pixel-button absolute -right-10">Next</button>
         </div>
 
         <input type="text" id="characterName" placeholder="Enter character name"
@@ -34,6 +40,7 @@
             <button class="pixel-button">PLAY</button>
         </div>
     </div>
+
 </body>
 
 </html>
