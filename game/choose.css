@@ -8,147 +8,35 @@
     src: url('props/font/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
-body {
-    background-image: url('props/bg3.png');
+.font-minecrafter {
     font-family: 'Minecrafter', sans-serif;
-    color: white;
-    text-transform: uppercase;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
-.character-container {
-    text-align: center;
-    padding: 30px;
-    border-radius: 15px;
-    width: 450px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.character-container h1 {
+.font-minecraft {
     font-family: 'Minecraft', sans-serif;
-    font-size: 50px;
-    text-transform: uppercase;
-    text-align: center;
-    color: #a8a8a8;
-    /* 3d effect */
-    text-shadow: 
-        4px 4px 0px #000,
-        8px 8px 0px #222,
-        12px 12px 5px rgba(0, 0, 0, 0.7);
-    letter-spacing: 3px;
-    position: relative;
-    display: inline-block;
-    
 }
 
-.character-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    position: relative;
+@keyframes subtleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
-#characterImage {
-    width: 350px;
-    height: 350px;
-    object-fit: contain;
-    border-radius: 15px;
-    animation: floating 3s ease-in-out infinite;
-}
-
-@keyframes floating {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-button {
-    font-family: 'Minecrafter', sans-serif;
-    font-size: 18px;
-    background-color: rgb(45, 85, 32);
-    color: #fff;
-    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border: 0;
-    z-index: 1;
-    user-select: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: unset;
-    padding: 0.8rem 1.5rem;
-    text-decoration: none;
-    font-weight: 900;
-    transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
-  }
-button:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    content: "";
-    transition: 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
-    z-index: -1;
-    background-color: rgb(7, 117, 26);
-    box-shadow: 0 -4px rgba(41, 95, 28, 0.5) inset,
-      0 4px #5bc95b inset, -4px 0 #3d953d inset,
-      4px 0 rgba(80, 136, 65, 0.5) inset, 4px 4px 0px #222;
-  }
-  
-button:hover:before {
-    box-shadow: 0 -4px rgb(0 0 0 / 50%) inset, 0 4px rgb(255 255 255 / 20%) inset,
-      -4px 0 rgb(255 255 255 / 20%) inset, 4px 0 rgba(0, 0, 0, 0.326) inset;
-  }
-  
-button:hover {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0px #222;
-}
-
-.navi {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    background: linear-gradient(to bottom, #d6d6d6, #a8a8a8);
-    font-size: 18px;
+.pixel-button {
+    background-color: #008000;
+    color: white;
     font-weight: bold;
-    font-family: 'Minecrafter', sans-serif;
-    padding: 12px 15px;
-    width: 80%;
-    border: 4px solid #555;
-    box-shadow: 4px 4px 0px #222;
     text-transform: uppercase;
-    text-align: center;
-    outline: none;
+    font-family: 'Minecrafter', sans-serif;
+    padding: 10px 20px;
+    border: 4px solid;
+    border-color: #50c878 #008000 #004000 #004000;
+    box-shadow: 4px 4px 0px #222;
     transition: all 0.2s ease-in-out;
 }
 
-input[type="text"]:focus {
-    border-color: #333;
+.pixel-button:hover {
+    background-color: #006400;
+    border-color: #008000 #50c878 #50c878 #008000;
     box-shadow: 2px 2px 0px #111;
+    transform: translateY(2px);
 }
