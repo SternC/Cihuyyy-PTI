@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose character page</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="choose.css">
-    <script src="./js/choose.js" defer></script>
-</head>
-<body>
-    <div class="character-container">
-        <h1>Choose Your Character</h1>
-        <div class="character-box">
-            <button id="prevBtn">Prev</button>
-            <img id="characterImage" src="props/char1.webp" alt="Character">
-            <button id="nextBtn">Next</button>
-        </div>
-        <input type="text" id="characterName" placeholder="Enter character name">
 
-        <div class="navi">
-            <button onclick="window.location.href='start.html'">Back</button>
-            <button>PLAY</button>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose character page</title>
+    <link rel="stylesheet" href="choose.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./js/choose.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center items-center h-screen bg-cover bg-center font-minecrafter" style="background-image: url('props/bg3.png')">
+
+    <div class="text-center p-8 rounded-lg w-96 transform transition duration-300">
+        <h1 class="text-gray-400 text-4xl uppercase font-minecraft tracking-wide relative inline-block" style="text-shadow: 4px 4px 0px #222, 8px 8px 0px #444, 12px 12px 4px rgba(0, 0, 0, 0.7);">
+            Choose Your Character
+        </h1>
+
+        <div class="flex items-center justify-center gap-4 my-5 relative">
+            <button id="prevBtn" class="pixel-button">Prev</button>
+            <img id="characterImage" src="props/char1.webp" alt="Character" class="w-80 h-80 object-contain rounded-lg" style="animation: subtleFloat 4s ease-in-out infinite" />
+            <button id="nextBtn" class="pixel-button">Next</button>
+        </div>
+
+        <input type="text" id="characterName" placeholder="Enter character name"
+            class="bg-gray-300 text-center uppercase font-minecrafter text-lg p-3 w-4/5 border-4 border-gray-600 shadow-lg focus:outline-none focus:border-gray-800 focus:shadow-md" />
+
+        <div class="flex gap-4 justify-center items-center mt-5 mb-5">
+            <button onclick="window.location.href='start.html'" class="pixel-button">
+                Back
+            </button>
+            <button class="pixel-button">PLAY</button>
         </div>
     </div>
 </body>
+
 </html>
