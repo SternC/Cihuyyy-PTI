@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="start.css" />
+    <title>Start</title>
 </head>
 <body>
-
-    <section class="home">
-        <h1>Travel Simulation Game</h1>
-        <h3>Journey to Indonesia</h3>
-        <button onclick="window.location.href='choose.html'">Start</button>
-    </section>
-
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="props/Minecraft HD Video Loop Wallpaper 720.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content text-center p-8 rounded-lg w-96 transform transition duration-300">
+        <h1 class="text-gray-400 text-4xl uppercase font-minecraft tracking-wide relative inline-block" 
+            style="color: #d4cccc; text-shadow: 4px 4px 0px #222, 8px 8px 0px #444, 12px 12px 4px rgba(0, 0, 0, 0.7);">
+            Exploring Archipelago
+        </h1>
+        <div class="button-container">
+            <button onclick="window.location.href='choose.html'" class="pixel-button">
+                Start
+            </button>
+        </div>
+    </div>
 </body>
 </html>
