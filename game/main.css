@@ -1,0 +1,239 @@
+@font-face {
+    font-family: 'Minecrafter';
+    src: url('props/font/Minecraft-Seven_v2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Minecraft';
+    src: url('props/font/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+}
+
+body {
+    background-image: url('props/bg3.png');
+    font-family: 'Minecrafter', sans-serif;
+    color: white;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#mainContainer {
+    text-align: center;
+    padding: 20px;
+    width: 450px;
+    transition: transform 0.3s ease-in-out;
+    width: 1200px;
+    height: 1000px;
+}
+
+.header h2{
+    font-family: 'Minecraft', sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #eae7e7;
+    /* 3d effect */
+    text-shadow: 
+        4px 4px 0px #000,
+        8px 8px 0px #222,
+        12px 12px 5px rgba(0, 0, 0, 0.7);
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+.timeline{
+    display: flex;
+    gap: 500px;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+}
+.timeline p{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.gameContainer {
+    display: flex;
+    padding: 20px;
+    border-radius: 15px;
+    width: 500px;
+    transition: transform 0.3s ease-in-out;
+    width: 1000px;
+    height: fit-content;
+    background: rgba(0, 0, 0, 0.6);
+    gap: 20px;
+    justify-self: center;
+}
+
+.map img{
+    width: 600px;
+    height: 500px;
+}
+
+/* EVENT CSS */
+.event{
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+}
+.event p{
+    margin: 0;
+}
+
+.event button {
+    font-family: 'Minecrafter', sans-serif;
+    font-size: 14px;
+    background-color: rgb(45, 85, 32);
+    color: #fff;
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 0;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: unset;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-weight: 900;
+    transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+    width: 300px;
+  }
+.event button:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    transition: 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+    z-index: -1;
+    background-color: rgb(124, 124, 124);
+    box-shadow: 0 -4px rgba(66, 67, 66, 0.5) inset,
+      0 4px #c8c8c8 inset, -4px 0 #868686 inset,
+      4px 0 rgba(117, 118, 117, 0.5) inset, 4px 4px 0px #222;
+  }
+  
+.event button:hover:before {
+    box-shadow: 0 -4px rgb(0 0 0 / 50%) inset, 0 4px rgb(255 255 255 / 20%) inset,
+      -4px 0 rgb(255 255 255 / 20%) inset, 4px 0 rgba(0, 0, 0, 0.326) inset;
+  }
+  
+.event button:hover {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px #222;
+}
+
+.menuContainer {
+    width: 500px;
+    padding-left: 0px;
+}
+
+.actionBar{
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgba(249, 248, 248, 0.3);
+    border-radius: 10px;
+}
+
+.actionBar img{
+    width: 30px;
+    height: 30px;
+}
+
+.Bar {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.progressContain{
+    height: 15px;
+    width: 100px;
+    background-color: rgb(221, 224, 221);
+    border: #000;
+}
+.progressBar{
+    height: 100%;
+    width: 10%;
+    background-color: green;
+    transition: width 0.3s ease-in-out;
+}
+
+.navi {
+    display: flex;
+    gap: 20px;
+    justify-content: left;
+    align-items: center;
+    margin-left: 20px;
+    height: 100px;
+}
+
+.navi button {
+    font-family: 'Minecrafter', sans-serif;
+    font-size: 18px;
+    background-color: rgb(45, 85, 32);
+    color: #fff;
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 0;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: unset;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-weight: 900;
+    transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+  }
+.navi button:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    transition: 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+    z-index: -1;
+    background-color: rgb(7, 117, 26);
+    box-shadow: 0 -4px rgba(41, 95, 28, 0.5) inset,
+      0 4px #5bc95b inset, -4px 0 #3d953d inset,
+      4px 0 rgba(80, 136, 65, 0.5) inset, 4px 4px 0px #222;
+  }
+  
+.navi button:hover:before {
+    box-shadow: 0 -4px rgb(0 0 0 / 50%) inset, 0 4px rgb(255 255 255 / 20%) inset,
+      -4px 0 rgb(255 255 255 / 20%) inset, 4px 0 rgba(0, 0, 0, 0.326) inset;
+  }
+  
+.navi button:hover {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px #222;
+}
