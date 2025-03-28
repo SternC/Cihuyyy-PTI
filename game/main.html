@@ -3,76 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main game</title>
+    <title>Main Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./js/main.js" defer></script>
     <link rel="stylesheet" href="main.css">
 </head>
-<body>
-    <div id="mainContainer">
-    <div class="header">
-        <h1>Mid Exam Game 2025</h1>
-        <h1>Exploring the Archipelago</h1>
-    </div>
-<hr>
+<body class="flex justify-center items-center min-h-screen text-white">
+    <div id="mainContainer" class="text-center p-5 w-[1200px] h-[1000px]">
+        <div class="header text-4xl font-bold uppercase drop-shadow-md">Mid Exam Game 2025</div>
+        <div class="text-2xl font-bold uppercase drop-shadow-md">Exploring the Archipelago</div>
+        <hr class="my-4 border-gray-500">
 
-    <div class="timeline">
-        <p>Selamat pagi/lainnya</p>
-        <p>Hari, tgl Bulan thn | 00.00</p>
-    </div>
-    
-    <div class="gameContainer">
-        <div class="map">
-            <img src="props/fakemap.png" alt="Map">
+        <div class="timeline flex justify-between text-lg">
+            <p>Selamat pagi/lainnya</p>
+            <p>Hari, tgl Bulan thn | 00.00</p>
         </div>
 
-        <div class="menuContainer">
-            <div class="event">
-                <p>Event: </p>
-                <button>Event 1</button>
-                <button>Event 1</button>
-                <button>Event 1</button>
-                <button>Event 1</button>
+        <div class="gameContainer flex gap-5 p-5 rounded-lg">
+            <div class="map">
+                <div class="absolute character-info text-center justify-center">
+                    <div class="nameBackground">
+                        <h2 id="charName" class="text-l font-bold"></h2>
+                    </div>
+                    <img id="charImage" src="" alt="Selected Character">
+                </div>
+                <img src="props/fakemap.png" alt="Map">
             </div>
 
-            <div class="actionBar">
-                <div>
-                    <div class="Bar">
+            <div class="menuContainer">
+                <div class="event grid gap-2 mb-5 text-center">
+                    <p class="text-xl font-bold">Event:</p>
+                    <button class="w-full">Event 1</button>
+                    <button class="w-full">Event 2</button>
+                    <button class="w-full">Event 3</button>
+                    <button class="w-full">Event 4</button>
+                </div>
+
+                <div class="actionBar grid">
+                    <div class="Bar flex items-center gap-2 w-full">
                         <img src="props/barIcons/meal.png">
-                        <div class="progressContain">
-                            <div class="progressBar"></div>
+                        <div class="progressContain bg-gray-700 h-4 rounded-full">
+                            <div class="progressBar bg-green-500 h-4 rounded-full w-1/2"></div>
                         </div>
                     </div>
-
-                    <div class="Bar">
+                    <div class="Bar flex items-center gap-2 w-full">
                         <img src="props/barIcons/sleep.png">
-                        <div class="progressContain">
-                            <div class="progressBar"></div>
+                        <div class="progressContain bg-gray-700 h-4 rounded-full">
+                            <div class="progressBar bg-green-500 h-4 rounded-full w-1/2"></div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div class="Bar">
+                    <div class="Bar flex items-center gap-2 w-full">
                         <img src="props/barIcons/hygiene.png">
-                        <div class="progressContain">
-                            <div class="progressBar"></div>
+                        <div class="progressContain bg-gray-700 h-4 rounded-full">
+                            <div class="progressBar bg-green-500 h-4 rounded-full w-1/2"></div>
                         </div>
                     </div>
-
-                    <div class="Bar">
+                    <div class="Bar flex items-center gap-2 w-full">
                         <img src="props/barIcons/happy.png">
-                        <div class="progressContain">
-                            <div class="progressBar"></div>
+                        <div class="progressContain bg-gray-700 h-4 rounded-full">
+                            <div class="progressBar bg-green-500 h-4 rounded-full w-1/2"></div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-    <div class="navi">
-        <button onclick="window.location.href='start.html'">Quit</button>
-        <button onclick="window.location.href='main.html'">Restart</button>
-    </div>
-        
 
-</div>
+        <div class="navi flex gap-5 mt-5">
+            <button onclick="window.location.href='start.html'">Quit</button>
+            <button onclick="window.location.href='main.html'">Restart</button>
+        </div>
+    </div>
 </body>
 </html>
