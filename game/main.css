@@ -34,10 +34,15 @@ body {
     width: 1200px;
     height: 1000px;
 }
-
-.header h2{
+.headerdivider{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.header2,
+.header{
     font-family: 'Minecraft', sans-serif;
-    font-size: 50px;
     text-transform: uppercase;
     text-align: center;
     color: #eae7e7;
@@ -50,10 +55,13 @@ body {
     position: relative;
     display: inline-block;
 }
+.header2{
+    margin-top: 10px;
+}
 
 .timeline{
     display: flex;
-    gap: 500px;
+    gap: 700px;
     justify-content: center;
     height: 30px;
     align-items: center;
@@ -61,6 +69,7 @@ body {
 .timeline p{
     margin-top: 0;
     margin-bottom: 10px;
+    text-shadow: #000 2px 2px 2px;
 }
 
 .gameContainer {
@@ -76,34 +85,82 @@ body {
     justify-self: center;
 }
 
+.hpMapContainer{
+    position: relative;
+    display: grid;
+}
 .map {
     position: relative;
-    width: 600px;
-    height: 500px;
+    width: 700px;
+    height: 600px;
     overflow: hidden;
+}
+.map img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hpMoneyContainer{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    margin: 10px;
+    gap: 475px;
+}
+.hpMoneyContainer img {
+    display: flex;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.hp{
+    display: flex;
+    align-items: center;
+}
+.hp img{
+    margin-right: 5px;
+}
+.money img{
+    width: 40px;
+}
+.money {
+    display: flex;
+    align-items: center;
+}
+.jumlah {
+    color: white;
+    font-size: 24px;
+    margin-left: 5px;
 }
 
 .character-info {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: top 0.1s linear, left 0.1s linear;
+    
 }
 
 .nameBackground {
-    background-color: #676767be;
+    background-color: #48484865;
     margin-bottom: 2px;
     display: inline-block;
     width: 100%;
     text-align: center;
+    border-radius: 7px;
+    margin-bottom: 10px;
 }
 
 #charImage {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 
@@ -175,15 +232,16 @@ body {
 
 .actionBar{
     display: flex;
-    width: 100%;
-    gap: 10px;
+    gap: 20px;
+    width: fit-content;
     padding: 10px;
     justify-content: center;
-    align-items: center;
+    justify-self: center;
     margin-top: 20px;
     margin-bottom: 20px;
     background: rgba(249, 248, 248, 0.3);
     border-radius: 10px;
+    padding-right: 30px;
 }
 
 .actionBar img{
@@ -200,10 +258,9 @@ body {
 }
 
 .progressContain{
-    height: 15px;
-    width: 200px;
-    background-color: rgb(221, 224, 221);
-    border: #000;
+    height: 20px;
+    width: 120px;
+    background-color: #dde0dd;
 }
 .progressBar{
     height: 100%;
@@ -221,6 +278,7 @@ body {
     height: 100px;
 }
 
+.direction button, 
 .navi button {
     font-family: 'Minecrafter', sans-serif;
     font-size: 18px;
@@ -243,6 +301,7 @@ body {
     font-weight: 900;
     transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
   }
+.direction button:before, 
 .navi button:before {
     position: absolute;
     top: 0;
@@ -259,12 +318,25 @@ body {
       4px 0 rgba(80, 136, 65, 0.5) inset, 4px 4px 0px #222;
   }
   
+.direction button:hover:before, 
 .navi button:hover:before {
     box-shadow: 0 -4px rgb(0 0 0 / 50%) inset, 0 4px rgb(255 255 255 / 20%) inset,
       -4px 0 rgb(255 255 255 / 20%) inset, 4px 0 rgba(0, 0, 0, 0.326) inset;
   }
   
+.direction button:hover, 
 .navi button:hover {
     transform: translateY(2px);
     box-shadow: 2px 2px 0px #222;
+}
+
+.direction button{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+}
+.direction {
+    margin-top: 50px;
 }
