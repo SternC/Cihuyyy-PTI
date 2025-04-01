@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
         position.top = newTop;
         position.left = newLeft;
     });
-    
+});
+
 let activeDirection = null;
 let movementInterval = null;
 
@@ -133,5 +134,4 @@ document.querySelectorAll('.direction button').forEach(button => {
     });
     
     button.addEventListener('touchend', stopMovement);
-});
 });
