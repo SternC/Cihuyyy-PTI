@@ -64,4 +64,74 @@ document.addEventListener("DOMContentLoaded", function () {
         position.top = newTop;
         position.left = newLeft;
     });
+    
+let activeDirection = null;
+let movementInterval = null;
+
+function processMovement() {
+    if (!activeDirection) return;
+    
+    const event = new KeyboardEvent('keydown', { key: activeDirection });
+    document.dispatchEvent(event);
+}
+
+function startMovement(direction) {
+    activeDirection = direction;
+    if (!movementInterval) {
+        processMovement();
+        movementInterval = setInterval(processMovement, 100);
+    }
+}
+
+function stopMovement() {
+    activeDirection = null;
+    if (movementInterval) {
+        clearInterval(movementInterval);
+        movementInterval = null;
+    }
+}
+
+document.querySelectorAll('.direction button').forEach(button => {
+    button.addEventListener('mousedown', function() {
+        const arrow = this.querySelector('img');
+        if (!arrow) return;
+        
+        if (arrow.classList.contains('-rotate-90')) {  
+            startMovement('ArrowUp');
+        } 
+        else if (arrow.classList.contains('rotate-180')) {  
+            startMovement('ArrowLeft');
+        }
+        else if (arrow.classList.contains('rotate-90')) {  
+            startMovement('ArrowDown');
+        }
+        else { 
+            startMovement('ArrowRight');
+        }
+    });
+    
+    button.addEventListener('mouseup', stopMovement);
+    button.addEventListener('mouseleave', stopMovement);
+    
+    button.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        const arrow = this.querySelector('img');
+        if (!arrow) return;
+        
+        if (arrow.classList.contains('-rotate-90')) {  
+            startMovement('ArrowUp');
+        } 
+        else if (arrow.classList.contains('rotate-180')) {  
+            startMovement('ArrowLeft');
+        }
+        else if (arrow.classList.contains('rotate-90')) {  
+            startMovement('ArrowDown');
+        }
+        else { 
+            startMovement('ArrowRight');
+        }
+    });
+    
+    button.addEventListener('touchend', stopMovement);
+});
 });
