@@ -135,3 +135,99 @@ document.querySelectorAll('.direction button').forEach(button => {
     
     button.addEventListener('touchend', stopMovement);
 });
+
+let statusBars = {
+    meal: { value: 50, element: null, drainRate: 0.1 },
+    sleep: { value: 50, element: null, drainRate: 0.07 },
+    hygiene: { value: 50, element: null, drainRate: 0.05 },
+    happy: { value: 50, element: null, drainRate: 0.03 }
+};
+
+function initStatusBars() {
+    Object.keys(statusBars).forEach(status => {
+        statusBars[status].element = document.querySelector(`.progressBar[data-status="${status}"]`);
+        updateStatusBar(status);
+    });
+    
+    setInterval(drainStatusBars, 1000); 
+}
+
+function drainStatusBars() {
+    Object.keys(statusBars).forEach(status => {
+        if(statusBars[status].value > 0) {
+            statusBars[status].value -= statusBars[status].drainRate;
+            if(statusBars[status].value < 0) statusBars[status].value = 0;
+            updateStatusBar(status);
+        }
+    });
+}
+
+function updateStatusBar(status) {
+    const bar = statusBars[status];
+    const roundedValue = Math.round(bar.value); 
+    
+    // Update width
+    bar.element.style.width = `${roundedValue}%`;
+    bar.element.setAttribute('data-value', roundedValue); 
+    
+    // Update warna berdasarkan nilai
+    if(roundedValue === 0) {
+        bar.element.style.opacity = '0'; 
+    } 
+    else if(roundedValue <= 1) {
+        bar.element.style.backgroundColor = '#ffcccc'; 
+        bar.element.style.opacity = '1';
+    }
+    else if(roundedValue <= 20) {
+        bar.element.style.backgroundColor = '#ff0000'; 
+    } 
+    else if(roundedValue <= 50) {
+        bar.element.style.backgroundColor = '#ffa500'; 
+    } 
+    else {
+        bar.element.style.backgroundColor = '#00ff00'; 
+    }
+}
+
+document.addEventListener("DOMContentLoaded", initStatusBars);
+
+document.addEventListener("DOMContentLoaded", function() {
+    const greetingElement = document.querySelector('.timeline p:first-child');
+    const timeElement = document.querySelector('.timeline p:last-child');
+    
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    function updateTimeline() {
+        const now = new Date();
+        
+        const hours = now.getHours();
+        let greeting;
+        
+        if (hours >= 5 && hours < 12) {
+            greeting = "Good morning";    
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good afternoon";  
+        } else if (hours >= 18 && hours < 24) {
+            greeting = "Good evening";   
+        } else {
+            greeting = "Good night";     
+        }
+        
+        const dayName = days[now.getDay()];
+        const date = now.getDate();
+        const monthName = months[now.getMonth()];
+        const year = now.getFullYear();
+        const hoursFormatted = String(now.getHours()).padStart(2, '0');
+        const minutesFormatted = String(now.getMinutes()).padStart(2, '0');
+        
+        const formattedDateTime = `${dayName}, ${date} ${monthName} ${year} | ${hoursFormatted}.${minutesFormatted}`;
+        
+        greetingElement.textContent = greeting;
+        timeElement.textContent = formattedDateTime;
+    }
+    
+    updateTimeline();
+    
+    setInterval(updateTimeline, 60000);
+});
