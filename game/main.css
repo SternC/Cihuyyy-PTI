@@ -8,6 +8,65 @@
     src: url('props/font/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
+@media (max-width: 1200px) {
+    .gameContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .menuContainer {
+        width: 100%;
+        max-width: 700px;
+        margin-top: 20px;
+    }
+    .map {
+        width: 100%;
+        max-width: 700px;
+    }
+    .hpMapContainer {
+        width: 100%;
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    #mainContainer {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    .gameContainer {
+        width: 100%;
+        padding: 10px;
+    }
+    .map {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 7/6;
+    }
+    .hpMoneyContainer {
+        position: relative;
+        width: 100%;
+        gap: 0;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+    .timeline {
+        gap: 20px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .actionBar {
+        flex-direction: column;
+        padding-right: 10px;
+    }
+    .direction button {
+        width: 50px;
+        height: 50px;
+    }
+}
+
 body {
     background-image: url('props/bg3.png');
     background-size: cover;
