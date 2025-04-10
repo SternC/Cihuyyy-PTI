@@ -357,15 +357,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const idleTime = 1000;
 
     function handleMovement(event) {
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+            event.preventDefault();
+        }
+    
         const mapRect = map.getBoundingClientRect();
         const charRect = character.getBoundingClientRect();
-
+    
         let newTop = position.top;
         let newLeft = position.left;
         let didMove = false;
-
+    
         switch (event.key.toLowerCase()) {
             case "w":
+            case "arrowup":
                 if (charRect.top - step > mapRect.top) {
                     newTop -= step;
                     didMove = true;
@@ -374,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 break;
             case "s":
+            case "arrowdown":
                 if (charRect.bottom + step < mapRect.bottom) {
                     newTop += step;
                     didMove = true;
@@ -382,6 +388,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 break;
             case "a":
+            case "arrowleft":
                 if (charRect.left - step > mapRect.left) {
                     newLeft -= step;
                     didMove = true;
@@ -390,6 +397,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 break;
             case "d":
+            case "arrowright":
                 if (charRect.right + step < mapRect.right) {
                     newLeft += step;
                     didMove = true;
@@ -400,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function() {
             default:
                 return;
         }
-
+    
         character.style.transition = "top 0.05s ease-out, left 0.05s ease-out";
         character.style.top = `${newTop}%`;
         character.style.left = `${newLeft}%`;
@@ -433,13 +441,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function processMovement() {
         if (!activeDirection) return;
-        document.dispatchEvent(new KeyboardEvent('keydown', { key: activeDirection }));
+        
+        const event = new KeyboardEvent('keydown', { 
+            key: activeDirection,
+            bubbles: true,
+            cancelable: true
+        });
+        
+        document.dispatchEvent(event);
         playerMoving = true;
         lastMoveTime = Date.now();
     }
 
     function startMovement(direction) {
-        activeDirection = direction;
+        let key;
+        switch(direction) {
+            case 'up': key = 'ArrowUp'; break;
+            case 'left': key = 'ArrowLeft'; break;
+            case 'down': key = 'ArrowDown'; break;
+            case 'right': key = 'ArrowRight'; break;
+            default: key = direction;
+        }
+        
+        activeDirection = key;
         if (!movementInterval) {
             processMovement();
             movementInterval = setInterval(processMovement, 100);
@@ -459,10 +483,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const arrow = this.querySelector('img');
             if (!arrow) return;
             
-            if (arrow.classList.contains('-rotate-90')) startMovement('w');
-            else if (arrow.classList.contains('rotate-180')) startMovement('a');
-            else if (arrow.classList.contains('rotate-90')) startMovement('s');
-            else startMovement('d');
+            if (arrow.classList.contains('-rotate-90')) startMovement('up');
+            else if (arrow.classList.contains('rotate-180')) startMovement('left');
+            else if (arrow.classList.contains('rotate-90')) startMovement('down');
+            else startMovement('right');
         });
         
         button.addEventListener('mouseup', stopMovement);
@@ -473,10 +497,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const arrow = this.querySelector('img');
             if (!arrow) return;
             
-            if (arrow.classList.contains('-rotate-90')) startMovement('w');
-            else if (arrow.classList.contains('rotate-180')) startMovement('a');
-            else if (arrow.classList.contains('rotate-90')) startMovement('s');
-            else startMovement('d');
+            if (arrow.classList.contains('-rotate-90')) startMovement('up');
+            else if (arrow.classList.contains('rotate-180')) startMovement('left');
+            else if (arrow.classList.contains('rotate-90')) startMovement('down');
+            else startMovement('right');
         });
         
         button.addEventListener('touchend', stopMovement);
