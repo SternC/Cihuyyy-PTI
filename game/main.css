@@ -223,13 +223,13 @@ body {
     object-fit: contain;
 }
 
-/* EVENT CSS */
 .event{
     display: grid;
     gap: 10px;
     margin-bottom: 20px;
     text-align: center;
     justify-content: center;
+    height: 300px;
 }
 .event p{
     margin: 0;
@@ -301,6 +301,7 @@ body {
     background: rgba(249, 248, 248, 0.3);
     border-radius: 10px;
     padding-right: 30px;
+
 }
 
 .actionBar img{
@@ -396,8 +397,9 @@ body {
     height: 70px;
     font-size: 30px;
 }
+
 .direction {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .progressContain {

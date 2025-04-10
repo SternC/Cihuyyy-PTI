@@ -1,19 +1,212 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // ======================
-    // 1. CHARACTER INITIALIZATION
-    // ======================
+    const eventSystem = {
+        triggerAreas: [
+            { 
+                x: 0.76, y: 0.28,
+                width: 0.1, height: 0.1,
+                content: `
+                    <p class="text-xl font-bold">HOUSE</p>
+                    <button class="w-full">Eat<br>Meal+</button>
+                    <button class="w-full">Sleep<br>Rest+ | Meal-</button>
+                    <button class="w-full">Shower<br>Hygiene+</button>
+                    <button class="w-full">Have Fun<br>Mood+</button>
+                `,
+                actions: [
+                    () => updateStatusBar('meal', 10),
+                    () => {
+                        updateStatusBar('sleep', 15);
+                        updateStatusBar('meal', -4);
+                    },
+                    () => updateStatusBar('hygiene', 15),
+                    () => updateStatusBar('happy', 7)
+                ]
+            },
+
+            { 
+                x: 0.15, y: 0.20,
+                width: 0.1, height: 0.1,
+                content: `
+                    <p class="text-xl font-bold">KUTA BEACH</p>
+                    <button class="w-full">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
+                    <button class="w-full">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full">Buy A Fresh Drink<br>Meal+</button>
+                    <button class="w-full">Sail Boat<br>Mood+</button>
+                `,
+                actions: [
+                    () => {
+                        updateStatusBar('sleep', 4);
+                        updateStatusBar('happy', 8);
+                        updateStatusBar('hygiene', -5);
+
+                    },
+                    () => {
+                        updateStatusBar('sleep', -6);
+                        updateStatusBar('happy', 15);
+                        updateStatusBar('hygiene', -7);
+                        updateStatusBar('meal', -5);
+
+                    },
+                    () => updateStatusBar('meal', 7),
+                    () => updateStatusBar('happy', 15)
+                        
+                ]
+            },
+
+            { 
+                x: 0.06, y: 0.4,
+                width: 0.1, height: 0.1,
+                content: `
+                    <p class="text-xl font-bold">PRAMBANAN TEMPLE</p>
+                    <button class="w-full">Worship<br>Mood+</button>
+                    <button class="w-full">Buy Talisman<br>Mood+</button>
+                    <button class="w-full">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
+                    <button class="w-full">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
+                `,
+                actions: [
+                    () => updateStatusBar('happy', 5),
+                    () => updateStatusBar('happy', 3),
+                    () => {
+                        updateStatusBar('happy', 8);
+                        updateStatusBar('sleep', -7);
+                        updateStatusBar('hygiene', -10);
+
+                    },
+                    () => {
+                        updateStatusBar('happy', 6);
+                        updateStatusBar('sleep', -5);
+                    },
+                ]
+            },
+
+            { 
+                x: 0.36, y: 0.27,
+                width: 0.1, height: 0.1,
+                content: `
+                    <p class="text-xl font-bold">SEMERU MOUNTAIN</p>
+                    <button class="w-full">Go Uphill<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full">Take A Photo<br>Mood+</button>
+                    <button class="w-full">Camping<br>Rest+ | Meal- | Hygiene+</button>
+                    <button class="w-full">Have A Snack<br>Meal+</button>
+                `,
+                actions: [
+                    () => {
+                        updateStatusBar('happy', 3);
+                        updateStatusBar('sleep', -5);
+                        updateStatusBar('hygiene', -7);
+                        updateStatusBar('meal', -7);
+                    },
+                    () => updateStatusBar('happy', 4),
+                    () => {
+                        updateStatusBar('sleep', 11);
+                        updateStatusBar('meal', -3);
+                        updateStatusBar('hygiene', 7);
+
+                    },
+                    () => updateStatusBar('meal', 7),
+                ]
+            },
+
+            { 
+                x: 0.52, y: 0.75,
+                width: 0.1, height: 0.1,
+                content: `
+                    <p class="text-xl font-bold">PINDUL CAVE</p>
+                    <button class="w-full">Explore the Cave<br>Rest+ | Meal- | Mood+</button>
+                    <button class="w-full">Take A Photo<br>Mood+</button>
+                    <button class="w-full">Cave Tubing<br>Hygiene- | Mood+Hygiene+</button>
+                    <button class="w-full">Swimming<br>Rest- | Meal-</button>
+                `,
+                actions: [
+                    () => {
+                        updateStatusBar('happy', 3);
+                        updateStatusBar('sleep', 4);
+                        updateStatusBar('meal', -4);
+                    },
+                    () => updateStatusBar('happy', 3),
+                    () => {
+                        updateStatusBar('happy', 11);
+                        updateStatusBar('hygiene', -6);
+                    },
+                    () => {
+                        updateStatusBar('meal', -7);
+                        updateStatusBar('sleep', -3);
+                    }
+                ]
+            }
+        ],
+        
+        currentArea: null,
+        
+        init() {
+            this.eventContainer = document.querySelector('.event');
+            this.clearEvent();
+        },
+        
+        checkPosition(playerX, playerY) {
+            let foundArea = null;
+            
+            this.triggerAreas.forEach(area => {
+                if (playerX >= area.x && 
+                    playerX <= area.x + area.width &&
+                    playerY >= area.y && 
+                    playerY <= area.y + area.height) {
+                    foundArea = area;
+                }
+            });
+            
+            if (foundArea !== this.currentArea) {
+                this.currentArea = foundArea;
+                this.updateEventDisplay();
+            }
+        },
+        
+    updateEventDisplay() {
+        this.clearEvent();
+        
+        if (this.currentArea) {
+            this.eventContainer.innerHTML = this.currentArea.content;
+            
+            const buttons = this.eventContainer.querySelectorAll('button');
+            buttons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    this.currentArea.actions[index]();
+
+                    Object.keys(statusBars).forEach(status => {
+                        updateStatusBar(status);
+                    });
+                });
+            });
+        }
+    },
+        
+        clearEvent() {
+            this.eventContainer.innerHTML = '';
+        }
+    };
+
+    eventSystem.init();
+
+    function checkEventTrigger() {
+        const mapRect = map.getBoundingClientRect();
+        const charRect = character.getBoundingClientRect();
+        
+        const playerX = (charRect.left + charRect.width/2 - mapRect.left) / mapRect.width;
+        const playerY = (charRect.top + charRect.height/2 - mapRect.top) / mapRect.height;
+        
+        eventSystem.checkPosition(playerX, playerY);
+    }
+
+    setInterval(checkEventTrigger, 500);
+
     let charName = localStorage.getItem("characterName") || "Unknown Hero";
     let charImage = localStorage.getItem("selectedCharacter") || "props/char1.webp";
     
     document.getElementById("charName").textContent = charName;
     document.getElementById("charImage").src = charImage;
 
-    // ======================
-    // 2. HP SYSTEM
-    // ======================
-    let hp = 3; // Start with 3 hearts
+    let hp = 3;
     const hpHearts = document.querySelectorAll('.hp img');
-    let statusDebounce = false; // Prevents multiple HP loss in quick succession
+    let statusDebounce = false; 
 
     function updateHPDisplay() {
         hpHearts.forEach((heart, index) => {
@@ -30,8 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (hp <= 0) {
                 gameOver();
             }
-            
-            // Reset debounce after 1 second
+
             setTimeout(() => {
                 statusDebounce = false;
             }, 1000);
@@ -45,9 +237,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateHPDisplay();
 
-    // ======================
-    // 3. MOVEMENT SYSTEM (WASD)
-    // ======================
     const character = document.querySelector(".character-info");
     const map = document.querySelector(".map");
     let position = { top: 50, left: 50 };
@@ -130,9 +319,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 100);
 
-    // ======================
-    // 4. DIRECTIONAL BUTTONS (WASD)
-    // ======================
     let activeDirection = null;
     let movementInterval = null;
 
@@ -187,9 +373,6 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('touchend', stopMovement);
     });
 
-    // ======================
-    // 5. STATUS BARS SYSTEM WITH HP CHECK AND RECOVERY
-    // ======================
     const statusBars = {
         meal: { 
             value: 50, 
@@ -235,13 +418,13 @@ document.addEventListener("DOMContentLoaded", function() {
             if (statusBars[status].value <= 0) {
                 if (!statusBars[status].wasZero) {
                     decreaseHP();
-                    statusBars[status].value = 50; // Restore to 50%
+                    statusBars[status].value = 50;
                     statusBars[status].wasZero = true;
                     
                     // PERBAIKAN: Reset visual style
                     const element = statusBars[status].element;
-                    element.style.opacity = '1'; // Reset opacity
-                    element.style.backgroundColor = '#ffa500'; // Force orange color
+                    element.style.opacity = '1'; 
+                    element.style.backgroundColor = '#ffa500';
                     element.style.animation = 'pulse 0.5s';
                     
                     setTimeout(() => {
@@ -267,32 +450,33 @@ document.addEventListener("DOMContentLoaded", function() {
         checkStatusForHP();
     }, 1000);
 
-    function updateStatusBar(status) {
-        const bar = statusBars[status];
-        const roundedValue = Math.round(bar.value);
-        
-        bar.element.style.width = `${roundedValue}%`;
-        bar.element.setAttribute('data-value', roundedValue);
-        
-        if(roundedValue <= 0) {
-            bar.element.style.opacity = '0.5';
-            bar.element.style.backgroundColor = '#ff0000';
-        } 
-        else if(roundedValue <= 20) {
-            bar.element.style.opacity = '1';
-            bar.element.style.backgroundColor = '#ff0000';
-        } 
-        else if(roundedValue <= 50) {
-            bar.element.style.backgroundColor = '#ffa500';
-        } 
-        else {
-            bar.element.style.backgroundColor = '#00ff00';
-        }
+function updateStatusBar(status, value = null) {
+    if (value !== null) {
+        statusBars[status].value = Math.max(0, Math.min(100, statusBars[status].value + value));
     }
 
-    // ======================
-    // 6. GAME TIMELINE
-    // ======================
+    const bar = statusBars[status];
+    const roundedValue = Math.round(bar.value);
+    
+    bar.element.style.width = `${roundedValue}%`;
+    bar.element.setAttribute('data-value', roundedValue);
+    
+    if(roundedValue <= 0) {
+        bar.element.style.opacity = '0.5';
+        bar.element.style.backgroundColor = '#ff0000';
+    } 
+    else if(roundedValue <= 20) {
+        bar.element.style.opacity = '1';
+        bar.element.style.backgroundColor = '#ff0000';
+    } 
+    else if(roundedValue <= 50) {
+        bar.element.style.backgroundColor = '#ffa500';
+    } 
+    else {
+        bar.element.style.backgroundColor = '#00ff00';
+    }
+}
+
     const greetingElement = document.querySelector('.timeline p:first-child');
     const timeElement = document.querySelector('.timeline p:last-child');
     
@@ -317,9 +501,6 @@ document.addEventListener("DOMContentLoaded", function() {
         greetingElement.textContent = greeting;
     }
     
-    // ======================
-    // INITIALIZE ALL SYSTEMS
-    // ======================
     initStatusBars();
     updateTimeline();
     setInterval(updateTimeline, 1000);
