@@ -1,9 +1,9 @@
-#Cihuyyy PTI
+# Cihuyyy PTI
 
-Richard Stern Chandra (00000136391)
-William Asabha Purnamadjaja (00000115707)
-Ceryne (00000135652)
-Abthal Akbar (00000121788)
+- Richard Stern Chandra (00000136391)
+- William Asabha Purnamadjaja (00000115707)
+- Ceryne (00000135652)
+- Abthal Akbar (00000121788)
 
 # Minecraft Exploring the Archipelogi
 
@@ -21,7 +21,7 @@ Abthal Akbar (00000121788)
 
 # Controls
 - On screen arrow buttons
-- WASD Key Control
+- WASD Key Control + Arrow Keys
 
 # Player activities
 - Eat some meal → Restores hunger.
