@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     let bgMusic = new Audio("props/SFX/bgmusic.mp3");
     bgMusic.loop = true;
-    bgMusic.volume = 0.45;
+    bgMusic.volume = 1.0;
     bgMusic.play();
 
     function cycleCharacter() {
