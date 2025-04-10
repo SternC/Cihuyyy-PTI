@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">HOUSE</p>
-                    <button class="w-full">Eat<br>Meal+</button>
-                    <button class="w-full">Sleep<br>Rest+ | Meal-</button>
-                    <button class="w-full">Shower<br>Hygiene+</button>
-                    <button class="w-full">Have Fun<br>Mood+</button>
+                    <button class="w-full event-btn">Eat<br>Meal+</button>
+                    <button class="w-full event-btn">Sleep<br>Rest+ | Meal-</button>
+                    <button class="w-full event-btn">Shower<br>Hygiene+</button>
+                    <button class="w-full event-btn">Have Fun<br>Mood+</button>
                 `,
                 actions: [
                     () => updateStatusBar('meal', 10),
@@ -19,48 +19,45 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     () => updateStatusBar('hygiene', 15),
                     () => updateStatusBar('happy', 7)
-                ]
+                ],
+                cooldowns: [10000, 10000, 10000, 10000]
             },
-
             { 
                 x: 0.15, y: 0.20,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">KUTA BEACH</p>
-                    <button class="w-full">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
-                    <button class="w-full">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
-                    <button class="w-full">Buy A Fresh Drink<br>Meal+</button>
-                    <button class="w-full">Sail Boat<br>Mood+</button>
+                    <button class="w-full event-btn">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
+                    <button class="w-full event-btn">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full event-btn">Buy A Fresh Drink<br>Meal+</button>
+                    <button class="w-full event-btn">Sail Boat<br>Mood+</button>
                 `,
                 actions: [
                     () => {
                         updateStatusBar('sleep', 4);
                         updateStatusBar('happy', 8);
                         updateStatusBar('hygiene', -5);
-
                     },
                     () => {
                         updateStatusBar('sleep', -6);
                         updateStatusBar('happy', 15);
                         updateStatusBar('hygiene', -7);
                         updateStatusBar('meal', -5);
-
                     },
                     () => updateStatusBar('meal', 7),
                     () => updateStatusBar('happy', 15)
-                        
-                ]
+                ],
+                cooldowns: [10000, 10000, 10000, 10000]
             },
-
             { 
                 x: 0.06, y: 0.4,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">PRAMBANAN TEMPLE</p>
-                    <button class="w-full">Worship<br>Mood+</button>
-                    <button class="w-full">Buy Talisman<br>Mood+</button>
-                    <button class="w-full">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
-                    <button class="w-full">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
+                    <button class="w-full event-btn">Worship<br>Mood+</button>
+                    <button class="w-full event-btn">Buy Talisman<br>Mood+</button>
+                    <button class="w-full event-btn">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
+                    <button class="w-full event-btn">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
                 `,
                 actions: [
                     () => updateStatusBar('happy', 5),
@@ -69,24 +66,23 @@ document.addEventListener("DOMContentLoaded", function() {
                         updateStatusBar('happy', 8);
                         updateStatusBar('sleep', -7);
                         updateStatusBar('hygiene', -10);
-
                     },
                     () => {
                         updateStatusBar('happy', 6);
                         updateStatusBar('sleep', -5);
-                    },
-                ]
+                    }
+                ],
+                cooldowns: [10000, 10000, 10000, 10000]
             },
-
             { 
                 x: 0.36, y: 0.27,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">SEMERU MOUNTAIN</p>
-                    <button class="w-full">Go Uphill<br>Rest- | Meal- | Hygiene- | Mood+</button>
-                    <button class="w-full">Take A Photo<br>Mood+</button>
-                    <button class="w-full">Camping<br>Rest+ | Meal- | Hygiene+</button>
-                    <button class="w-full">Have A Snack<br>Meal+</button>
+                    <button class="w-full event-btn">Go Uphill<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full event-btn">Take A Photo<br>Mood+</button>
+                    <button class="w-full event-btn">Camping<br>Rest+ | Meal- | Hygiene+</button>
+                    <button class="w-full event-btn">Have A Snack<br>Meal+</button>
                 `,
                 actions: [
                     () => {
@@ -100,21 +96,20 @@ document.addEventListener("DOMContentLoaded", function() {
                         updateStatusBar('sleep', 11);
                         updateStatusBar('meal', -3);
                         updateStatusBar('hygiene', 7);
-
                     },
-                    () => updateStatusBar('meal', 7),
-                ]
+                    () => updateStatusBar('meal', 7)
+                ],
+                cooldowns: [10000, 10000, 10000, 10000]
             },
-
             { 
                 x: 0.52, y: 0.75,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">PINDUL CAVE</p>
-                    <button class="w-full">Explore the Cave<br>Rest+ | Meal- | Mood+</button>
-                    <button class="w-full">Take A Photo<br>Mood+</button>
-                    <button class="w-full">Cave Tubing<br>Hygiene- | Mood+Hygiene+</button>
-                    <button class="w-full">Swimming<br>Rest- | Meal-</button>
+                    <button class="w-full event-btn">Explore the Cave<br>Rest+ | Meal- | Mood+</button>
+                    <button class="w-full event-btn">Take A Photo<br>Mood+</button>
+                    <button class="w-full event-btn">Cave Tubing<br>Hygiene- | Mood+Hygiene+</button>
+                    <button class="w-full event-btn">Swimming<br>Rest- | Meal-</button>
                 `,
                 actions: [
                     () => {
@@ -131,11 +126,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         updateStatusBar('meal', -7);
                         updateStatusBar('sleep', -3);
                     }
-                ]
+                ],
+                cooldowns: [10000, 10000, 10000, 10000]
             }
         ],
         
         currentArea: null,
+        activeCooldowns: new Map(),
+        cooldownIntervals: new Map(),
         
         init() {
             this.eventContainer = document.querySelector('.event');
@@ -160,30 +158,89 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         },
         
-    updateEventDisplay() {
-        this.clearEvent();
-        
-        if (this.currentArea) {
-            this.eventContainer.innerHTML = this.currentArea.content;
+        updateEventDisplay() {
+            this.clearEvent();
             
-            const buttons = this.eventContainer.querySelectorAll('button');
-            buttons.forEach((btn, index) => {
-                btn.addEventListener('click', () => {
-                    this.currentArea.actions[index]();
-
-                    Object.keys(statusBars).forEach(status => {
-                        updateStatusBar(status);
+            if (this.currentArea) {
+                this.eventContainer.innerHTML = this.currentArea.content;
+                
+                const buttons = this.eventContainer.querySelectorAll('.event-btn');
+                buttons.forEach((btn, index) => {
+                    const cooldownKey = `${this.currentArea.x}-${this.currentArea.y}-${index}`;
+                    
+                    if (this.activeCooldowns.has(cooldownKey)) {
+                        const remaining = this.activeCooldowns.get(cooldownKey) - Date.now();
+                        if (remaining > 0) {
+                            this.applyCooldown(btn, remaining, this.currentArea.cooldowns[index]);
+                            return;
+                        } else {
+                            this.activeCooldowns.delete(cooldownKey);
+                        }
+                    }
+                    
+                    btn.addEventListener('click', () => {
+                        this.currentArea.actions[index]();
+                        
+                        Object.keys(statusBars).forEach(status => {
+                            updateStatusBar(status);
+                        });
+                        
+                        this.startCooldown(btn, index, cooldownKey);
                     });
                 });
-            });
-        }
-    },
+            }
+        },
+        
+        startCooldown(button, index, cooldownKey) {
+            const cooldownDuration = this.currentArea.cooldowns[index];
+            const endTime = Date.now() + cooldownDuration;
+            
+            button.disabled = true;
+            button.classList.add('cooldown-active');
+            
+            this.activeCooldowns.set(cooldownKey, endTime);
+            
+            const originalHTML = button.innerHTML;
+            const updateInterval = setInterval(() => {
+                const remaining = Math.max(0, endTime - Date.now());
+                
+                if (remaining <= 0) {
+                    clearInterval(updateInterval);
+                    this.endCooldown(button, originalHTML, cooldownKey);
+                } else {
+                    const seconds = Math.ceil(remaining / 1000);
+                    button.innerHTML = `${originalHTML.split('<br>')[0]}<br>(${seconds}s)`;
+                }
+            }, 100);
+            
+            this.cooldownIntervals.set(cooldownKey, updateInterval);
+        },
+        
+        endCooldown(button, originalHTML, cooldownKey) {
+            button.disabled = false;
+            button.classList.remove('cooldown-active');
+            button.innerHTML = originalHTML;
+            this.activeCooldowns.delete(cooldownKey);
+            this.cooldownIntervals.delete(cooldownKey);
+        },
+        
+        applyCooldown(button, remaining, cooldownDuration) {
+            const originalHTML = button.innerHTML.split('<br>')[0];
+            const seconds = Math.ceil(remaining / 1000);
+            
+            button.disabled = true;
+            button.classList.add('cooldown-active');
+            button.innerHTML = `${originalHTML}<br>(${seconds}s)`;
+        },
         
         clearEvent() {
+            this.cooldownIntervals.forEach(interval => clearInterval(interval));
+            this.cooldownIntervals.clear();
             this.eventContainer.innerHTML = '';
         }
     };
-
+    
+    
     eventSystem.init();
 
     function checkEventTrigger() {
@@ -504,4 +561,58 @@ function updateStatusBar(status, value = null) {
     initStatusBars();
     updateTimeline();
     setInterval(updateTimeline, 1000);
+
+
+
+        // Initialize money from localStorage or set default to 5000
+        let money = 5000;
+        localStorage.setItem('gameMoney', money);
+        
+        // Update money display
+        updateMoneyDisplay(money);
+        
+        // Check if a timer is already running
+        let lastUpdate = localStorage.getItem('lastMoneyUpdate');
+        let timer;
+        
+        if (lastUpdate) {
+            const now = new Date().getTime();
+            const diff = now - parseInt(lastUpdate);
+            const threeMinutes = 3 * 60 * 1000; // 3 minutes in milliseconds
+            
+            // If more than 3 minutes have passed since last update
+            if (diff >= threeMinutes) {
+                const increments = Math.floor(diff / threeMinutes);
+                money += increments * 100;
+                localStorage.setItem('gameMoney', money);
+                localStorage.setItem('lastMoneyUpdate', now.toString());
+                updateMoneyDisplay(money);
+            }
+            
+            // Calculate time until next update
+            const timeUntilNext = threeMinutes - (diff % threeMinutes);
+            timer = setTimeout(startMoneyTimer, timeUntilNext);
+        } else {
+            // Start fresh timer
+            localStorage.setItem('lastMoneyUpdate', new Date().getTime().toString());
+            timer = setTimeout(startMoneyTimer, 3 * 60 * 1000);
+        }
+        
+        function startMoneyTimer() {
+            // Add 100 money
+            money += 100;
+            localStorage.setItem('gameMoney', money);
+            updateMoneyDisplay(money);
+            
+            // Update last update time
+            localStorage.setItem('lastMoneyUpdate', new Date().getTime().toString());
+            
+            // Set timer for next increment
+            timer = setTimeout(startMoneyTimer, 3 * 60 * 1000);
+        }
+        
+        function updateMoneyDisplay(amount) {
+            document.querySelector('.money .jumlah').textContent = amount;
+            localStorage.setItem('gameMoney', amount);
+        }
 });

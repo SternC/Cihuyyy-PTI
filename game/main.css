@@ -8,62 +8,205 @@
     src: url('props/font/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
+/* Add this at the top of your CSS */
 @media (max-width: 1200px) {
-    .gameContainer {
-        flex-direction: column;
-        align-items: center;
-    }
-    .menuContainer {
-        width: 100%;
-        max-width: 700px;
-        margin-top: 20px;
-    }
-    .map {
-        width: 100%;
-        max-width: 700px;
-    }
-    .hpMapContainer {
-        width: 100%;
-        max-width: 700px;
-    }
-}
-
-@media (max-width: 768px) {
     #mainContainer {
         width: 100%;
         height: auto;
-        padding: 10px;
+        padding: 15px;
     }
+    
     .gameContainer {
         width: 100%;
-        padding: 10px;
+        max-width: 100%;
+        padding: 15px;
     }
+    
     .map {
         width: 100%;
         height: auto;
-        aspect-ratio: 7/6;
+        max-height: 500px;
     }
-    .hpMoneyContainer {
-        position: relative;
-        width: 100%;
-        gap: 0;
-        justify-content: space-between;
-        margin: 10px 0;
-    }
-    .timeline {
-        gap: 20px;
-        flex-direction: column;
+
+    .character-info {
+        transform: translate(-50%, -50%) scale(0.9);
     }
 }
 
+/* Medium Devices (Tablets) - Updated */
+@media (max-width: 992px) {
+    .gameContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .hpMapContainer {
+        width: 100%;
+    }
+    
+    .map {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/0.85; /* Slightly wider than square */
+        max-height: 500px;
+    }
+    
+    .menuContainer {
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .hpMoneyContainer {
+        position: relative;
+        gap: 20px;
+        justify-content: space-around;
+        margin: 10px 0;
+    }
+
+    .character-info {
+        width: 70px;
+        height: 70px;
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+    
+    #charImage {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* Small Devices (Mobile Landscape) - Updated */
+@media (max-width: 768px) {
+    .map {
+        aspect-ratio: 1/0.9; /* More square ratio */
+        max-height: 400px;
+    }
+    
+    .timeline {
+        gap: 50px;
+        flex-direction: row;
+        height: auto;
+        padding: 5px 0;
+    }
+    
+    .event {
+        height: auto;
+        margin-bottom: 15px;
+    }
+    
+    .event button {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hpMoneyContainer {
+        gap: 10px;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .character-info {
+        width: 60px;
+        height: 60px;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    #charImage {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Extra Small Devices (Mobile Portrait) - Updated */
 @media (max-width: 576px) {
+    .map {
+        aspect-ratio: 1/1; /* Perfect square for small devices */
+        max-height: 350px;
+    }
+    
+    .header {
+        font-size: 2rem;
+        text-shadow: 
+            3px 3px 0px #000,
+            6px 6px 0px #222,
+            9px 9px 5px rgba(0, 0, 0, 0.7);
+    }
+    
+    .header2 {
+        font-size: 1.5rem;
+    }
+    
     .actionBar {
         flex-direction: column;
-        padding-right: 10px;
+        padding-right: 15px;
+        gap: 10px;
     }
+    
+    .direction button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .character-info {
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    
+    #charImage {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .hpMoneyContainer img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .money img {
+        width: 30px;
+    }
+    
+    .jumlah {
+        font-size: 20px;
+    }
+}
+
+/* Very Small Devices */
+@media (max-width: 400px) {
+    .map {
+        max-height: 300px;
+    }
+    
+    .header {
+        font-size: 1.8rem;
+    }
+    
+    .header2 {
+        font-size: 1.3rem;
+    }
+    
     .direction button {
         width: 50px;
         height: 50px;
+    }
+    
+    .hpMoneyContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .character-info {
+        width: 40px;
+        height: 40px;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+    
+    #charImage {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -203,8 +346,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: top 0.1s linear, left 0.1s linear;
-    
+    transition: 
+        top 0.1s linear, 
+        left 0.1s linear,
+        transform 0.3s ease; /* Added smooth scaling transition */
+    transform-origin: center center;
+    z-index: 10;
 }
 
 .nameBackground {
@@ -282,6 +429,12 @@ body {
 .event button:hover {
     transform: translateY(2px);
     box-shadow: 2px 2px 0px #222;
+}
+
+.event-btn.cooldown-active {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(50%);
 }
 
 .menuContainer {
