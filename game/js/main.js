@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">HOUSE</p>
-                    <button class="w-full event-btn">Eat<br>Meal+</button>
-                    <button class="w-full event-btn">Sleep<br>Rest+ | Meal-</button>
-                    <button class="w-full event-btn">Shower<br>Hygiene+</button>
-                    <button class="w-full event-btn">Have Fun<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Eat! Eat! Eat! Gain 10 points of hunger">Eat<br>Meal+</button>
+                    <button class="w-full event-btn" data-tooltip="Gain 15 sleep points but lose 4 points of hunger">Sleep<br>Rest+ | Meal-</button>
+                    <button class="w-full event-btn" data-tooltip="Take a shower! Gain 15 hygiene points">Shower<br>Hygiene+</button>
+                    <button class="w-full event-btn" data-tooltip="Relax a bit~  Gain 7 mood points">Have Fun<br>Mood+</button>
                 `,
                 actions: [
                     () => updateStatusBar('meal', 10),
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">KUTA BEACH</p>
-                    <button class="w-full event-btn">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
-                    <button class="w-full event-btn">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
-                    <button class="w-full event-btn">Buy A Fresh Drink<br>Meal+</button>
-                    <button class="w-full event-btn">Sail Boat<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Sunbathe to tan your skin~ Gain 4 points of sleep, 8 points of mood, -5 hygiene">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
+                    <button class="w-full event-btn" data-tooltip="Swim for a while~ Gain 15 points of mood, lose 6 sleep, 7 hygiene, 5 hunger">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Cooldown a bit~ Needs 150 coins, gain 7 points of hunger">Buy A Fresh Drink<br>Meal+</button>
+                    <button class="w-full event-btn" data-tooltip="Let's go SAILING! Gain 7 points of hunger, 15 points of mood">Sail Boat<br>Mood+</button>
                 `,
                 actions: [
                     () => {
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">PRAMBANAN TEMPLE</p>
-                    <button class="w-full event-btn">Worship<br>Mood+</button>
-                    <button class="w-full event-btn">Buy Talisman<br>Mood+</button>
-                    <button class="w-full event-btn">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
-                    <button class="w-full event-btn">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Pray at the temple for spiritual fulfillment | Gain 5 mood">Worship<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Purchase a lucky charm to boost your spirits | Gain 3 mood">Buy Talisman<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Explore the ancient temple - tiring but fascinating | Gain 8 mood, lose 7 sleep and 10 hygiene">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
+                    <button class="w-full event-btn" data-tooltip="Watch the traditional dance performance - tiring but culturally enriching | Gain 6 mood points, lose 5 sleep points">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
                 `,
                 actions: [
                     () => updateStatusBar('happy', 5),
@@ -72,17 +72,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         updateStatusBar('sleep', -5);
                     }
                 ],
-                cooldowns: [10000, 10000, 10000, 10000]
+                cooldowns: [10000, 10000, 30000, 10000]
             },
             { 
                 x: 0.36, y: 0.27,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">SEMERU MOUNTAIN</p>
-                    <button class="w-full event-btn">Go Uphill<br>Rest- | Meal- | Hygiene- | Mood+</button>
-                    <button class="w-full event-btn">Take A Photo<br>Mood+</button>
-                    <button class="w-full event-btn">Camping<br>Rest+ | Meal- | Hygiene+</button>
-                    <button class="w-full event-btn">Have A Snack<br>Meal+</button>
+                    <button class="w-full event-btn" data-tooltip="Hike up the mountain - exhausting but rewarding | Gain 3 points of mood, lose 5 sleep, 7 hygiene and hunger">Go Uphill<br>Rest- | Meal- | Hygiene- | Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Capture the beautiful scenery | ">Take A Photo<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Set up camp to rest and clean up, but you'll need snacks">Camping<br>Rest+ | Meal- | Hygiene+</button>
+                    <button class="w-full event-btn" data-tooltip="Have some snacks to regain energy">Have A Snack<br>Meal+</button>
                 `,
                 actions: [
                     () => {
@@ -106,10 +106,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">PINDUL CAVE</p>
-                    <button class="w-full event-btn">Explore the Cave<br>Rest+ | Meal- | Mood+</button>
-                    <button class="w-full event-btn">Take A Photo<br>Mood+</button>
-                    <button class="w-full event-btn">Cave Tubing<br>Hygiene- | Mood+Hygiene+</button>
-                    <button class="w-full event-btn">Swimming<br>Rest- | Meal-</button>
+                    <button class="w-full event-btn" data-tooltip="Explore the cave system - somewhat restful but you'll need food | GAin 3 points of mood, 4 points of sleep, lose 4 points of hunger">Explore the Cave<br>Rest+ | Meal- | Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Take pictures of the unique cave formations | Gain 3 points of mood">Take A Photo<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Float through the cave on a tube - dirty but fun | Gain 11 points of mood, lose 6 points of hygiene">Cave Tubing<br>Hygiene- | Mood+Hygiene+</button>
+                    <button class="w-full event-btn" data-tooltip="Swim in the cave waters - refreshing but tiring | Lose 7 points of hunger, lose 3 points of sleep">Swimming<br>Rest- | Meal-</button>
                 `,
                 actions: [
                     () => {
@@ -138,6 +138,37 @@ document.addEventListener("DOMContentLoaded", function() {
         init() {
             this.eventContainer = document.querySelector('.event');
             this.clearEvent();
+            this.setupTooltips();
+        },
+        
+        setupTooltips() {
+            // Create tooltip element
+            const tooltip = document.createElement('div');
+            tooltip.id = 'event-tooltip';
+            tooltip.className = 'hidden absolute z-50 p-2 bg-gray-800 text-white text-sm rounded pointer-events-none';
+            document.body.appendChild(tooltip);
+    
+            // Add event listeners for all event buttons
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.classList.contains('event-btn') && e.target.dataset.tooltip) {
+                    const btn = e.target;
+                    const tooltipText = btn.dataset.tooltip;
+                    
+                    tooltip.textContent = tooltipText;
+                    tooltip.classList.remove('hidden');
+                    
+                    // Position tooltip above the button
+                    const btnRect = btn.getBoundingClientRect();
+                    tooltip.style.left = `${btnRect.left + window.scrollX}px`;
+                    tooltip.style.top = `${btnRect.top + window.scrollY - tooltip.offsetHeight - 5}px`;
+                }
+            });
+    
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.classList.contains('event-btn')) {
+                    tooltip.classList.add('hidden');
+                }
+            });
         },
         
         checkPosition(playerX, playerY) {
@@ -239,7 +270,6 @@ document.addEventListener("DOMContentLoaded", function() {
             this.eventContainer.innerHTML = '';
         }
     };
-    
     
     eventSystem.init();
 
