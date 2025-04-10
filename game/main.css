@@ -8,7 +8,7 @@
     src: url('props/font/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
-/* Add this at the top of your CSS */
+
 @media (max-width: 1200px) {
     #mainContainer {
         width: 100%;
@@ -33,7 +33,7 @@
     }
 }
 
-/* Medium Devices (Tablets) - Updated */
+
 @media (max-width: 992px) {
     .gameContainer {
         flex-direction: column;
@@ -48,7 +48,7 @@
     .map {
         width: 100%;
         height: auto;
-        aspect-ratio: 1/0.85; /* Slightly wider than square */
+        aspect-ratio: 1/0.85;
         max-height: 500px;
     }
     
@@ -76,10 +76,10 @@
     }
 }
 
-/* Small Devices (Mobile Landscape) - Updated */
+
 @media (max-width: 768px) {
     .map {
-        aspect-ratio: 1/0.9; /* More square ratio */
+        aspect-ratio: 1/0.9;
         max-height: 400px;
     }
     
@@ -118,10 +118,10 @@
     }
 }
 
-/* Extra Small Devices (Mobile Portrait) - Updated */
+
 @media (max-width: 576px) {
     .map {
-        aspect-ratio: 1/1; /* Perfect square for small devices */
+        aspect-ratio: 1/1;
         max-height: 350px;
     }
     
@@ -173,7 +173,7 @@
     }
 }
 
-/* Very Small Devices */
+
 @media (max-width: 400px) {
     .map {
         max-height: 300px;
@@ -248,7 +248,6 @@ body {
     text-transform: uppercase;
     text-align: center;
     color: #eae7e7;
-    /* 3d effect */
     text-shadow: 
         4px 4px 0px #000,
         8px 8px 0px #222,
@@ -349,7 +348,7 @@ body {
     transition: 
         top 0.1s linear, 
         left 0.1s linear,
-        transform 0.3s ease; /* Added smooth scaling transition */
+        transform 0.3s ease;
     transform-origin: center center;
     z-index: 10;
 }
