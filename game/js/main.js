@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 cooldowns: [10000, 10000, 10000, 10000]
             },
             
-            // PRAMBANAN TEMPLE - Buy Talisman
             { 
                 x: 0.06, y: 0.4,
                 width: 0.1, height: 0.1,
@@ -163,13 +162,11 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         
         setupTooltips() {
-            // Create tooltip element
             const tooltip = document.createElement('div');
             tooltip.id = 'event-tooltip';
             tooltip.className = 'hidden absolute z-50 p-2 bg-gray-800 text-white text-sm rounded pointer-events-none';
             document.body.appendChild(tooltip);
     
-            // Add event listeners for all event buttons
             document.addEventListener('mouseover', (e) => {
                 if (e.target.classList.contains('event-btn') && e.target.dataset.tooltip) {
                     const btn = e.target;
@@ -178,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     tooltip.textContent = tooltipText;
                     tooltip.classList.remove('hidden');
                     
-                    // Position tooltip above the button
                     const btnRect = btn.getBoundingClientRect();
                     tooltip.style.left = `${btnRect.left + window.scrollX}px`;
                     tooltip.style.top = `${btnRect.top + window.scrollY - tooltip.offsetHeight - 5}px`;
@@ -534,7 +530,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     statusBars[status].value = 50;
                     statusBars[status].wasZero = true;
                     
-                    // PERBAIKAN: Reset visual style
                     const element = statusBars[status].element;
                     element.style.opacity = '1'; 
                     element.style.backgroundColor = '#ffa500';
@@ -620,11 +615,9 @@ function updateStatusBar(status, value = null) {
 
 
 
-        // Initialize money from localStorage or set default to 5000
         let money = 5000;
         localStorage.setItem('gameMoney', money);
         
-        // Update money display
         updateMoneyDisplay(money);
 
         function canAfford(amount) {
@@ -643,16 +636,14 @@ function updateStatusBar(status, value = null) {
             updateMoneyDisplay(newAmount);
         }
         
-        // Check if a timer is already running
         let lastUpdate = localStorage.getItem('lastMoneyUpdate');
         let timer;
         
         if (lastUpdate) {
             const now = new Date().getTime();
             const diff = now - parseInt(lastUpdate);
-            const threeMinutes = 3 * 60 * 1000; // 3 minutes in milliseconds
+            const threeMinutes = 3 * 60 * 1000;
             
-            // If more than 3 minutes have passed since last update
             if (diff >= threeMinutes) {
                 const increments = Math.floor(diff / threeMinutes);
                 money += increments * 100;
@@ -661,25 +652,20 @@ function updateStatusBar(status, value = null) {
                 updateMoneyDisplay(money);
             }
             
-            // Calculate time until next update
             const timeUntilNext = threeMinutes - (diff % threeMinutes);
             timer = setTimeout(startMoneyTimer, timeUntilNext);
         } else {
-            // Start fresh timer
             localStorage.setItem('lastMoneyUpdate', new Date().getTime().toString());
             timer = setTimeout(startMoneyTimer, 3 * 60 * 1000);
         }
         
         function startMoneyTimer() {
-            // Add 100 money
             money += 100;
             localStorage.setItem('gameMoney', money);
             updateMoneyDisplay(money);
             
-            // Update last update time
             localStorage.setItem('lastMoneyUpdate', new Date().getTime().toString());
             
-            // Set timer for next increment
             timer = setTimeout(startMoneyTimer, 3 * 60 * 1000);
         }
         
