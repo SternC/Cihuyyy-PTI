@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Main Game</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -17,7 +17,7 @@
         </div>
         <hr class="my-4 border-white-500">
 
-        <div class="timeline justify-between text-lg">
+        <div class="timeline gap-2 md:justify-between text-lg">
             <p>Selamat pagi/lainnya</p>
             <p>Hari, tgl Bulan thn | 00.00</p>
         </div>
@@ -33,13 +33,13 @@
                     </div>
                     <img src="props/map.png" alt="Map">
                 </div>
-                <div class="hpMoneyContainer">
-                    <div class="hp">
+                <div class="hpMoneyContainer flex">
+                    <div class="hp md:ml-0 ml-2">
                         <img src="props/hpHeart.png">
                         <img src="props/hpHeart.png">
                         <img src="props/hpHeart.png">
                     </div>
-                    <div class="money">
+                    <div class="money md:mr-0 mr-14">
                         <img src="props/minecraftCurrency.png">
                         <p class="jumlah">5000</p>
                     </div>
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div class="navi flex gap-5">
+        <div class="navi flex justify-center md:justify-start gap-5">
             <button onclick="window.location.href='start.html'">Quit</button>
             <button onclick="window.location.href='main.html'">Restart</button>
         </div>
