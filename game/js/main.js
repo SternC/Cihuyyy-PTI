@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p class="text-xl font-bold">KUTA BEACH</p>
                     <button class="w-full event-btn" data-tooltip="Sunbathe to tan your skin~ Gain 4 points of sleep, 8 points of mood, -5 hygiene">Sunbathe<br>Rest+ | Mood+ | Hygiene-</button>
                     <button class="w-full event-btn" data-tooltip="Swim for a while~ Gain 15 points of mood, lose 6 sleep, 7 hygiene, 5 hunger">Swimming<br>Rest- | Meal- | Hygiene- | Mood+</button>
-                    <button class="w-full event-btn" data-tooltip="Cooldown a bit~ Needs 150 coins, gain 7 points of hunger">Buy A Fresh Drink<br>Meal+</button>
-                    <button class="w-full event-btn" data-tooltip="Let's go SAILING! Gain 7 points of hunger, 15 points of mood">Sail Boat<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Cooldown a bit~ Needs 150 coins, gain 7 points of hunger" data-cost="150">Buy A Fresh Drink<br>Meal+ (150 coins)</button>
+                    <button class="w-full event-btn" data-tooltip="Let's go SAILING! Needs 300 coins, gain 15 points of mood" data-cost="300">Sail Boat<br>Mood+ (300 coins)</button>
                 `,
                 actions: [
                     () => {
@@ -44,24 +44,44 @@ document.addEventListener("DOMContentLoaded", function() {
                         updateStatusBar('hygiene', -7);
                         updateStatusBar('meal', -5);
                     },
-                    () => updateStatusBar('meal', 7),
-                    () => updateStatusBar('happy', 15)
+                    () => {
+                        const cost = 150;
+                        if (canAfford(cost)) {
+                            deductMoney(cost);
+                            updateStatusBar('meal', 7);
+                        }
+                    },
+                    () => {
+                        const cost = 300;
+                        if (canAfford(cost)) {
+                            deductMoney(cost);
+                            updateStatusBar('happy', 15);
+                        }
+                    }
                 ],
                 cooldowns: [10000, 10000, 10000, 10000]
             },
+            
+            // PRAMBANAN TEMPLE - Buy Talisman
             { 
                 x: 0.06, y: 0.4,
                 width: 0.1, height: 0.1,
                 content: `
                     <p class="text-xl font-bold">PRAMBANAN TEMPLE</p>
                     <button class="w-full event-btn" data-tooltip="Pray at the temple for spiritual fulfillment | Gain 5 mood">Worship<br>Mood+</button>
-                    <button class="w-full event-btn" data-tooltip="Purchase a lucky charm to boost your spirits | Gain 3 mood">Buy Talisman<br>Mood+</button>
+                    <button class="w-full event-btn" data-tooltip="Purchase a lucky charm to boost your spirits | Needs 200 coins, gain 3 mood" data-cost="200">Buy Talisman<br>Mood+ (200 coins)</button>
                     <button class="w-full event-btn" data-tooltip="Explore the ancient temple - tiring but fascinating | Gain 8 mood, lose 7 sleep and 10 hygiene">Explore the Temple<br>Rest- | Mood+ | Hygiene-</button>
                     <button class="w-full event-btn" data-tooltip="Watch the traditional dance performance - tiring but culturally enriching | Gain 6 mood points, lose 5 sleep points">Watching the Ramayana Ballet<br>Rest- | Mood+</button>
                 `,
                 actions: [
                     () => updateStatusBar('happy', 5),
-                    () => updateStatusBar('happy', 3),
+                    () => {
+                        const cost = 200;
+                        if (canAfford(cost)) {
+                            deductMoney(cost);
+                            updateStatusBar('happy', 3);
+                        }
+                    },
                     () => {
                         updateStatusBar('happy', 8);
                         updateStatusBar('sleep', -7);
@@ -74,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 ],
                 cooldowns: [10000, 10000, 30000, 10000]
             },
+            
             { 
                 x: 0.36, y: 0.27,
                 width: 0.1, height: 0.1,
@@ -210,6 +231,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     
                     btn.addEventListener('click', () => {
+                        const cost = parseInt(btn.dataset.cost) || 0;
+                        if (cost > 0 && !canAfford(cost)) {
+                            return;
+                        }
+                        
                         this.currentArea.actions[index]();
                         
                         Object.keys(statusBars).forEach(status => {
@@ -600,6 +626,22 @@ function updateStatusBar(status, value = null) {
         
         // Update money display
         updateMoneyDisplay(money);
+
+        function canAfford(amount) {
+            const currentMoney = parseInt(localStorage.getItem('gameMoney')) || 0;
+            if (currentMoney >= amount) {
+                return true;
+            }
+            alert(`Not enough coins! You need ${amount} coins for this action.`);
+            return false;
+        }
+        
+        function deductMoney(amount) {
+            const currentMoney = parseInt(localStorage.getItem('gameMoney')) || 0;
+            const newAmount = currentMoney - amount;
+            localStorage.setItem('gameMoney', newAmount);
+            updateMoneyDisplay(newAmount);
+        }
         
         // Check if a timer is already running
         let lastUpdate = localStorage.getItem('lastMoneyUpdate');
@@ -646,3 +688,4 @@ function updateStatusBar(status, value = null) {
             localStorage.setItem('gameMoney', amount);
         }
 });
+
